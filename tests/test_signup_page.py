@@ -9,12 +9,12 @@ class TestSignupPage(BaseTest):
     def test_signup_page_without_name_and_email(self, driver):
         signuppage = SignupPage(driver)
         signuppage.verify_signup_without_name_and_email()
-    @pytest.mark.skip
+
     def test_signup_page_with_existing_account(self, driver):
         signuppage = SignupPage(driver)
         signuppage.verify_signup_with_existing_account()
 
-    @pytest.mark.skip
+
     def test_signup_page_with_invalid_email(self, driver):
         signuppage = SignupPage(driver)
         signuppage.verify_signup_with_invalid_email()
