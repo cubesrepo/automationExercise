@@ -14,7 +14,7 @@ pipeline{
         }
         stage("Run tests"){
             steps{
-                bat 'automationExerciseVENV\\Scripts\\activate && pytest -v --html=report.html'
+                bat 'automationExerciseVENV\\Scripts\\activate && pytest -v --html=report.html --headless'
             }
         }
     }
