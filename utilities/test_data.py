@@ -1,16 +1,20 @@
 from selenium.webdriver.common.by import By
 
 BASE_URL = "https://automationexercise.com/"
+email = "testemailautomation123!@gmail.com"
+password = "testemailautomation123password"
 
-PASSWORD=  "123123"
 
 class homepage:
     SIGNUP_LOGIN_MENU = By.XPATH, "//a[normalize-space()='Signup / Login']"
-    PRODUCTS_MENU = By.XPATH, "//a[@href='/products']"
+    PRODUCTS_MENU = By.CSS_SELECTOR, "a[href='/products']"
     CART_MENU = By.XPATH, "//a[normalize-space()='Cart']"
+    LOG_OUT = By.XPATH, "//a[normalize-space()='Logout']"
 class login:
     SIGNUP_LOGIN_MENU = By.XPATH, "//a[normalize-space()='Signup / Login']"
-
+    EMAIL = By.XPATH, "//input[@data-qa='login-email']"
+    PASSWORD = By.XPATH, "//input[@placeholder='Password']"
+    LOGIN_BTN = By.XPATH, "//button[normalize-space()='Login']"
 class products:
     CONTINUE_SHOPPING = By.XPATH, "(//button[normalize-space()='Continue Shopping'])[1]"
 class cart:
@@ -26,7 +30,7 @@ class cart:
     CVC = By.XPATH, "//input[@name='cvc']"
     MONTH = By.XPATH, "//input[@name='expiry_month']"
     YEAR = By.XPATH, "//input[@name='expiry_year']"
-    SUBMIT = By.XPATH, "//button[@id='submit']"
+    PAY_AND_CONFIRM_ORDER = By.XPATH, "//button[@id='submit']"
 
     ORDER_PLACE_MESSAGE = By.XPATH, "//b[normalize-space()='Order Placed!']"
 class signup:
@@ -36,7 +40,8 @@ class signup:
 
     EMAIL_ALREADY_EXIST_MESSAGE = By.XPATH, "//p[normalize-space()='Email Address already exist!']"
 
-    MR = By.XPATH, "//label[@for='id_gender1']"
+    MR = By.XPATH, "(//input[@id='id_gender1'])[1]"
+    MRS = By.XPATH, "(//input[@id='id_gender2'])[1]"
     PASSWORD = By.XPATH, "//input[@name='password']"
     DAY = By.XPATH, "//select[@name='days']"
     MONTH = By.XPATH, "//select[@name='months']"
@@ -60,4 +65,6 @@ class signup:
 
     ACCOUNT_CREATED_MESSAGE = By.XPATH, "//b[normalize-space()='Account Created!']"
     CONTINUE_BTN = By.XPATH, "(//a[normalize-space()='Continue'])[1]"
+
+
 

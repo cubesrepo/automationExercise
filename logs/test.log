@@ -1,0 +1,58 @@
+2025-11-09 14:01:11,417 [INFO] [test_cart_with_empty_product]: ===== Test session started =====
+2025-11-09 14:01:15,567 [INFO] SignupPage: Element is clickable: ('xpath', "//a[normalize-space()='Signup / Login']")
+2025-11-09 14:01:16,331 [INFO] SignupPage: Element is clickable: ('xpath', "//input[@data-qa='login-email']")
+2025-11-09 14:01:16,332 [INFO] SignupPage: Typing into 'testemailautomation123!@gmail.com' into ('xpath', "//input[@data-qa='login-email']")
+2025-11-09 14:01:16,513 [INFO] SignupPage: Element is clickable: ('xpath', "//input[@placeholder='Password']")
+2025-11-09 14:01:16,513 [INFO] SignupPage: Typing into 'testemailautomation123password' into ('xpath', "//input[@placeholder='Password']")
+2025-11-09 14:01:16,636 [INFO] SignupPage: Element is clickable: ('xpath', "//button[normalize-space()='Login']")
+2025-11-09 14:01:20,117 [INFO] SignupPage: URL is found: https://automationexercise.com/
+2025-11-09 14:01:20,117 [INFO] SignupPage: Current url: https://automationexercise.com/
+2025-11-09 14:01:20,135 [INFO] CartPage: Element is clickable: ('css selector', "a[href='/products']")
+2025-11-09 14:01:20,135 [INFO] CartPage: Element is clickable: ('css selector', "a[href='/products']")
+2025-11-09 14:01:22,786 [INFO] CartPage: Element ('css selector', "a[href='/products']") has been clicked
+2025-11-09 14:01:22,810 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[1]")
+2025-11-09 14:01:22,811 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[1]")
+2025-11-09 14:01:24,102 [INFO] CartPage: Element ('xpath', "(//div[@class='productinfo text-center'])[1]") has been hovered
+2025-11-09 14:01:24,156 [INFO] CartPage: Element is clickable: ('xpath', "(//a[contains(text(),'Add to cart')])[2]")
+2025-11-09 14:01:24,762 [INFO] CartPage: Element is clickable: ('xpath', "(//button[normalize-space()='Continue Shopping'])[1]")
+2025-11-09 14:01:24,826 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[2]")
+2025-11-09 14:01:24,826 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[2]")
+2025-11-09 14:01:26,120 [INFO] CartPage: Element ('xpath', "(//div[@class='productinfo text-center'])[2]") has been hovered
+2025-11-09 14:01:26,185 [INFO] CartPage: Element is clickable: ('xpath', "(//a[contains(text(),'Add to cart')])[4]")
+2025-11-09 14:01:26,784 [INFO] CartPage: Element is clickable: ('xpath', "(//button[normalize-space()='Continue Shopping'])[1]")
+2025-11-09 14:01:26,853 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[3]")
+2025-11-09 14:01:26,853 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[3]")
+2025-11-09 14:01:28,151 [INFO] CartPage: Element ('xpath', "(//div[@class='productinfo text-center'])[3]") has been hovered
+2025-11-09 14:01:28,171 [INFO] CartPage: Element is clickable: ('xpath', "(//a[contains(text(),'Add to cart')])[6]")
+2025-11-09 14:01:28,788 [INFO] CartPage: Element is clickable: ('xpath', "(//button[normalize-space()='Continue Shopping'])[1]")
+2025-11-09 14:01:28,857 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[4]")
+2025-11-09 14:01:28,857 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[4]")
+2025-11-09 14:01:30,136 [INFO] CartPage: Element ('xpath', "(//div[@class='productinfo text-center'])[4]") has been hovered
+2025-11-09 14:01:30,176 [INFO] CartPage: Element is clickable: ('xpath', "(//a[contains(text(),'Add to cart')])[8]")
+2025-11-09 14:01:30,801 [INFO] CartPage: Element is clickable: ('xpath', "(//button[normalize-space()='Continue Shopping'])[1]")
+2025-11-09 14:01:30,886 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[5]")
+2025-11-09 14:01:30,886 [INFO] CartPage: Element is visible: ('xpath', "(//div[@class='productinfo text-center'])[5]")
+2025-11-09 14:01:32,184 [INFO] CartPage: Element ('xpath', "(//div[@class='productinfo text-center'])[5]") has been hovered
+2025-11-09 14:01:32,200 [INFO] CartPage: Element is clickable: ('xpath', "(//a[contains(text(),'Add to cart')])[10]")
+2025-11-09 14:01:32,818 [INFO] CartPage: Element is clickable: ('xpath', "(//button[normalize-space()='Continue Shopping'])[1]")
+2025-11-09 14:01:32,903 [INFO] CartPage: Element is clickable: ('xpath', "//a[normalize-space()='Cart']")
+2025-11-09 14:01:34,184 [INFO] CartPage: Element is clickable: ('xpath', "(//a[@class='cart_quantity_delete'])[1]")
+2025-11-09 14:01:34,276 [INFO] CartPage: Element is clickable: ('xpath', "(//a[@class='cart_quantity_delete'])[2]")
+2025-11-09 14:01:34,367 [INFO] CartPage: Element is clickable: ('xpath', "(//a[@class='cart_quantity_delete'])[3]")
+2025-11-09 14:01:34,451 [INFO] CartPage: Element is clickable: ('xpath', "(//a[@class='cart_quantity_delete'])[4]")
+2025-11-09 14:01:34,532 [INFO] CartPage: Element is clickable: ('xpath', "(//a[@class='cart_quantity_delete'])[5]")
+2025-11-09 14:01:35,134 [INFO] CartPage: Element is visible: ('xpath', "//b[normalize-space()='Cart is empty!']")
+2025-11-09 14:01:35,150 [INFO] CartPage: The element: <selenium.webdriver.remote.webelement.WebElement (session="e3839042e8ba6060ab439d77fe0ab0fe", element="f.C1E19511B20EBA736C33DCE92E88A4CF.d.4CE8EB290CD217497D22E9BC377FE8C7.e.131")> has text: Cart is empty!
+2025-11-09 14:01:39,494 [INFO] [test_cart_with_empty_product]: ===== Test session ended =====
+
+2025-11-09 14:01:43,558 [INFO] [test_valid_login]: ===== Test session started =====
+2025-11-09 14:01:52,982 [INFO] SignupPage: Element is clickable: ('xpath', "//a[normalize-space()='Signup / Login']")
+2025-11-09 14:01:55,825 [INFO] SignupPage: Element is clickable: ('xpath', "//input[@data-qa='login-email']")
+2025-11-09 14:01:55,825 [INFO] SignupPage: Typing into 'testemailautomation123!@gmail.com' into ('xpath', "//input[@data-qa='login-email']")
+2025-11-09 14:01:55,998 [INFO] SignupPage: Element is clickable: ('xpath', "//input[@placeholder='Password']")
+2025-11-09 14:01:55,998 [INFO] SignupPage: Typing into 'testemailautomation123password' into ('xpath', "//input[@placeholder='Password']")
+2025-11-09 14:01:56,121 [INFO] SignupPage: Element is clickable: ('xpath', "//button[normalize-space()='Login']")
+2025-11-09 14:02:08,039 [INFO] SignupPage: URL is found: https://automationexercise.com/
+2025-11-09 14:02:08,039 [INFO] SignupPage: Current url: https://automationexercise.com/
+2025-11-09 14:02:12,413 [INFO] [test_valid_login]: ===== Test session ended =====
+

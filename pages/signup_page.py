@@ -1,199 +1,137 @@
-import random
-import string
-import time
+from allure_commons.model2 import TEST_CASE_PATTERN
+from faker.proxy import Faker
 
-from faker import Faker
-
-import test_data
 from pages.base_page import BasePage
+from tests.test_cart import TestCart
+from utilities import test_data
 
 
 class SignupPage(BasePage):
+    def click_signup_login_menu(self):
+        self.wait_clickable(test_data.homepage.SIGNUP_LOGIN_MENU).click()
 
-    def verify_signup_without_name_and_email(self):
-        time.sleep(2)
+    def type_name_email_signup(self, name, email):
+        self.type(test_data.signup.NAME, name)
+        self.type(test_data.signup.EMAIL_ADDRESS, email)
 
-        #click login/singup menu
-        self.wait_clickable(test_data.homepage.SIGNUP_LOGIN_MENU, 15).click()
+    def type_email_password_login(self, email, password):
+        self.type(test_data.login.EMAIL, email)
+        self.type(test_data.login.PASSWORD, password)
 
-        time.sleep(1)
+    def click_signup_btn(self):
+        self.wait_clickable(test_data.signup.SIGNUP_BTN).click()
 
-        #check the page url
-        assert self.url_is("https://automationexercise.com/login")
+    def set_title(self, title):
+        if title.lower().strip() == "mr":
+            self.wait_clickable(test_data.signup.MR).click()
+        elif title.lower().strip() == "mrs":
+            self.wait_clickable(test_data.signup.MRS).click()
 
-        #click signup btn
-        self.wait_clickable(test_data.signup.SIGNUP_BTN, 15).click()
-        time.sleep(0.5)
+    def enter_password(self, password):
+        self.scroll_to_element(test_data.signup.PASSWORD)
+        return self.type( test_data.signup.PASSWORD, password)
 
-        #asssert validation message
-        assert "Please fill out this field." in self.get_validation_message(test_data.signup.NAME, 15)
+    def enter_date_of_birth(self, day, month, year):
+        self.select_dropdown_value(test_data.signup.DAY, day)
+        self.select_dropdown_value(test_data.signup.MONTH, month)
+        self.select_dropdown_value(test_data.signup.YEAR, year)
 
-    def verify_signup_with_existing_account(self):
-        time.sleep(2)
+    def set_country(self, country):
+        self.select_dropdown_value(test_data.signup.COUNTRY, country)
+    def tick_newsletter_special_offer(self):
+        self.wait_clickable(test_data.signup.NEWS_LETTER).click()
+        self.wait_clickable(test_data.signup.SPECIAL_OFFER).click()
 
-        # input name
-        namevalue = "www"
-        self.send_keys(15, test_data.signup.NAME, namevalue)
-        time.sleep(0.5)
+    def enter_address_information(self, first_name, last_name, company, address, address_2, country,
+                                  state, city, zip_code, mobile_number):
+        print(f"pipi {first_name}")
+        address_info = {
+            test_data.signup.FIRST_NAME: first_name,
+            test_data.signup.LAST_NAME: last_name,
+            test_data.signup.COMPANY: company,
+            test_data.signup.ADDRESS_ONE: address,
+            test_data.signup.ADDRESS_TWO: address_2,
+            test_data.signup.STATE: state,
+            test_data.signup.CITY: city,
+            test_data.signup.ZIP_CODE: zip_code,
+            test_data.signup.MOBILE_NO: mobile_number
+        }
 
-        # input email
-        emailvalue = "www@gmail.com"
-        self.send_keys(15, test_data.signup.EMAIL_ADDRESS, emailvalue)
+        for locator, value in address_info.items():
+            self.scroll_to_element(locator)
 
-        time.sleep(0.5)
-        # click signup btn
-        self.wait_clickable(test_data.signup.SIGNUP_BTN, 15).click()
-        time.sleep(0.5)
 
-        assert self.wait_visibility(test_data.signup.EMAIL_ALREADY_EXIST_MESSAGE, 15)
+            if value in "STATE":
+                self.set_country(country)
+            self.type(locator, value)
 
-    def verify_signup_with_invalid_email(self):
-        time.sleep(2)
 
-        # input name
-        namevalue = ''.join(random.choices(string.ascii_lowercase, k=7))
-        self.send_keys(15, test_data.signup.NAME, namevalue)
 
-        time.sleep(0.5)
+    def click_create_account(self):
+        self.wait_clickable(test_data.signup.CREATE_ACCOUNT_BTN).click()
 
-        # input email
-        emailvalue = "emailsvalue"
-        self.send_keys(15, test_data.signup.EMAIL_ADDRESS, emailvalue)
+    def get_account_created_url(self, url):
+        return self.get_url(url)
+    def get_account_created_message(self):
+        return self.get_text(test_data.signup.ACCOUNT_CREATED_MESSAGE)
+    def get_email_exist_message(self):
+        return self.get_text(test_data.signup.EMAIL_ALREADY_EXIST_MESSAGE)
+    def click_login_btn(self):
+        self.wait_clickable(test_data.login.LOGIN_BTN).click()
+    def click_logout_btn(self):
+        self.wait_clickable(test_data.homepage.LOG_OUT).click()
 
-        time.sleep(0.5)
+    def verify_valid_signup_account_info(self):
+        self.click_signup_login_menu()
+        fake =Faker()
+        email_address = f"{fake.first_name()}_emailgrey@example.org"
+        password = "Password123!"
 
-        # click signup btn
-        self.wait_clickable(test_data.signup.SIGNUP_BTN, 15).click()
-        time.sleep(0.5)
+        self.type_name_email_signup(fake.name(), email_address)
+        self.click_signup_btn()
 
-        assert "Please include an '@' in the email address." in self.get_validation_message(test_data.signup.EMAIL_ADDRESS, 15)
+        self.set_title("mrs")
+        self.enter_password(password)
 
-    def verify_signup_with_valid_credentials(self):
-        time.sleep(2)
+        self.enter_date_of_birth('6','11', '2002')
+        self.enter_address_information(fake.name(), fake.name(), fake.company(), fake.address(),
+                                       fake.address(), "Canada", fake.state(), fake.city(),
+                                       fake.zipcode(), "1231239")
 
-        # input name
-        namevalue = ''.join(random.choices(string.ascii_lowercase, k=7))
-        self.send_keys(15, test_data.signup.NAME, namevalue)
+        self.click_create_account()
 
-        time.sleep(0.5)
+        current_result_url = self.get_account_created_url("https://automationexercise.com/account_created")
+        current_result_account_created = self.get_account_created_message()
 
-        # input email
-        emailvalue = ''.join(random.choices(string.ascii_lowercase, k=7))
-        self.send_keys(15, test_data.signup.EMAIL_ADDRESS, f"{emailvalue}@gmail.com")
+        return current_result_url, current_result_account_created.strip(), email_address, password
 
-        time.sleep(0.5)
+    def verify_signup_with_existing_email(self):
+        self.click_signup_login_menu()
+        name = "name"
+        email = "123@gmail.com"
+        self.type_name_email_signup(name, email)
+        self.click_signup_btn()
 
-        # click signup btn
-        self.wait_clickable(test_data.signup.SIGNUP_BTN, 15).click()
-        time.sleep(1)
+        current_result_email_exist_message = self.get_email_exist_message()
 
-        #click mr
-        self.wait_clickable(test_data.signup.MR, 15).click()
-        time.sleep(0.5)
+        return current_result_email_exist_message.strip()
 
-        # input password
-        self.send_keys(15, test_data.signup.PASSWORD, test_data.PASSWORD)
-        time.sleep(0.5)
+    def verify_signup_without_email_password(self):
+        self.click_signup_login_menu()
+        self.type_name_email_signup("", "")
+        self.click_signup_btn()
 
-        #select day
-        day = self.wait_clickable(test_data.signup.DAY, 15)
-        day.click()
-        time.sleep(0.5)
-        self.action_click(self.select_by_visible_text(day, "25"))
+        current_result_fill_out_field = self.validation_fillout_this_field(test_data.signup.NAME)
 
-        time.sleep(0.5)
+        return current_result_fill_out_field.strip()
 
-        # select month
-        month = self.wait_clickable(test_data.signup.MONTH, 15)
-        month.click()
-        time.sleep(0.5)
-        self.action_click(self.select_by_visible_text(month, "December"))
+    def verify_valid_login(self):
+        self.click_signup_login_menu()
 
-        time.sleep(0.5)
+        self.type_email_password_login(test_data.email, test_data.password)
+        self.click_login_btn()
 
-        # select year
-        year = self.wait_clickable(test_data.signup.YEAR, 15)
-        year.click()
-        time.sleep(0.5)
-        self.action_click(self.select_by_visible_text(year, "1997"))
+        current_url = self.get_url("https://automationexercise.com/")
 
-        time.sleep(0.5)
+        return current_url
 
-        #click newsletter
-        self.wait_clickable(test_data.signup.NEWS_LETTER, 15).click()
-
-        time.sleep(0.5)
-
-        #click special offers
-        self.wait_clickable(test_data.signup.SPECIAL_OFFER, 15).click()
-
-        time.sleep(0.5)
-        #scroll down
-        self.scroll_by_amount(0, 250)
-
-        fake = Faker()
-        #input firstname
-        firstnamevalue = fake.first_name()
-        self.send_keys(15, test_data.signup.FIRST_NAME, firstnamevalue)
-        time.sleep(0.5)
-
-        # input lastname
-        lastnamevalue = fake.last_name()
-        self.send_keys(15, test_data.signup.LAST_NAME, lastnamevalue)
-        time.sleep(0.5)
-
-        # input company
-        companyvalue = "company"
-        self.send_keys(15, test_data.signup.COMPANY, companyvalue)
-        time.sleep(0.5)
-
-        # input address one
-        addressonevalue = "address one"
-        self.send_keys(15, test_data.signup.ADDRESS_ONE, addressonevalue)
-        time.sleep(0.5)
-
-        # input address two
-        addresstwovalue = "address two"
-        self.send_keys(15, test_data.signup.ADDRESS_TWO, addresstwovalue)
-        time.sleep(0.5)
-
-        # select country
-        country = self.wait_clickable(test_data.signup.COUNTRY, 15)
-        country.click()
-        time.sleep(0.5)
-        self.action_click(self.select_by_visible_text(country, "Canada"))
-
-        # input state
-        statevalue = fake.state()
-        self.send_keys(15, test_data.signup.STATE, statevalue)
-        time.sleep(0.5)
-
-        # input CITY
-        cityvalue = fake.city()
-        self.send_keys(15, test_data.signup.CITY, cityvalue)
-        time.sleep(0.5)
-
-        # input zip code
-        zipcodevalue = "34341"
-        self.send_keys(15, test_data.signup.ZIP_CODE, zipcodevalue)
-        time.sleep(0.5)
-
-        # input mobile no.
-        mobileNovalue = fake.numerify("########")
-        self.send_keys(15, test_data.signup.MOBILE_NO, mobileNovalue)
-        time.sleep(0.5)
-
-        #click create account btn
-        self.wait_clickable(test_data.signup.CREATE_ACCOUNT_BTN, 15).click()
-
-        time.sleep(1)
-
-        #assert page url and title and account created message
-        assert self.title_is("Automation Exercise - Account Created")
-        assert self.url_is("https://automationexercise.com/account_created")
-        assert self.wait_visibility(test_data.signup.ACCOUNT_CREATED_MESSAGE, 15)
-
-        time.sleep(0.5)
-
-        #click continue btn
-        self.wait_clickable(test_data.signup.CONTINUE_BTN,15).click()
